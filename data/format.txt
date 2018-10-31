@@ -1,0 +1,10 @@
+token1 token2 token3 token4 token5 token6 token7 token8
+
+token1 freq : f1 freq f2 freq f3 freq f4 freq
+token2 freq : f1 freq f2 freq f3 freq f4 freq
+token3 freq : f1 freq f2 freq f3 freq f4 freq
+token4 freq : f1 freq f2 freq f3 freq f4 freq
+token5 freq : f1 freq f2 freq f3 freq f4 freq
+token6 freq : f1 freq f2 freq f3 freq f4 freq
+token7 freq : f1 freq f2 freq f3 freq f4 freq
+token8 freq : f1 freq f2 freq f3 freq f4 freq
