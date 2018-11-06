@@ -6,20 +6,20 @@ class Element {
     private String word;
     private int freq;
 
-    public Element(String word, int freq) {
+    Element(String word, int freq) {
         this.word = word;
         this.freq = freq;
     }
 
-    public String getWord() {
+    String getWord() {
         return word;
     }
 
-    public int getFreq() {
+    int getFreq() {
         return freq;
     }
 
-    public void increment() {
+    void increment() {
         freq++;
     }
 
@@ -30,11 +30,11 @@ class Frequencies {
     private Element word;
     private List<Element> list = new ArrayList<>();
 
-    public Frequencies(String element) {
+    Frequencies(String element) {
         word = new Element(element, 1);
     }
 
-    public Frequencies(String line, boolean isLine) {
+    Frequencies(String line, boolean isLine) {
         String[] arr = line.split(" ");
         word = new Element(arr[0], Integer.valueOf(arr[1]));
         for (int k = 3; k < arr.length; k++) {
@@ -42,26 +42,28 @@ class Frequencies {
         }
     }
 
-    public String getWord() {
+    String getWord() {
         return word.getWord();
     }
 
-    public boolean hasElement(String word) {
+    void incrementSelf() { word.increment(); }
+
+    boolean hasElement(String word) {
         for (int k = 0; k < list.size(); k++) {
             if (list.get(k).getWord().equals(word)) return true;
         }
         return false;
     }
 
-    public void addElement(String word) {
+    void addElement(String word) {
         list.add(new Element(word, 1));
     }
 
-    public void addElement(String word, int freq) {
+    void addElement(String word, int freq) {
         list.add(new Element(word, freq));
     }
 
-    public void incrementElement(String word) {
+    void incrementElement(String word) {
         for (int k = 0; k < list.size(); k++) {
             if (list.get(k).getWord().equals(word)) {
                 list.get(k).increment();
@@ -116,22 +118,38 @@ public class Analysis {
             if (head.get(k).equals(current)) {
                 for (int i = 0; i < body.size(); i++) {
                     Frequencies currentFreq = body.get(i);
+                    currentFreq.incrementSelf();
                     if (currentFreq.getWord().equals(current)) {
                         if (currentFreq.hasElement(next)) { currentFreq.incrementElement(next); }
                         else { currentFreq.addElement(next); }
                         return;
                     }
                 }
+                break;
             }
         }
+        //System.out.println("New Frequencies: " + current);
         head.add(current);
-        Frequencies newFreq = new Frequencies(next);
+        Frequencies newFreq = new Frequencies(current);
         newFreq.addElement(next);
         body.add(newFreq);
     }
 
     public void add(int current, int next) {
         add(Integer.toString(current), Integer.toString(next));
+    }
+
+    public void output() {
+        String s = "";
+        for (int k = 0; k < head.size(); k++) {
+            s += head.get(k);
+            if (k != head.size() - 1) { s += " "; }
+        }
+        System.out.println(s);
+        System.out.println();
+        for (int k = 0; k < body.size(); k++) {
+            System.out.println(body.get(k).toString());
+        }
     }
 
 }
