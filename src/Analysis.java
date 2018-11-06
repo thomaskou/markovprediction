@@ -112,10 +112,26 @@ public class Analysis {
     }
 
     public void add(String current, String next) {
-
+        for (int k = 0; k < head.size(); k++) {
+            if (head.get(k).equals(current)) {
+                for (int i = 0; i < body.size(); i++) {
+                    Frequencies currentFreq = body.get(i);
+                    if (currentFreq.getWord().equals(current)) {
+                        if (currentFreq.hasElement(next)) { currentFreq.incrementElement(next); }
+                        else { currentFreq.addElement(next); }
+                        return;
+                    }
+                }
+            }
+        }
+        head.add(current);
+        Frequencies newFreq = new Frequencies(next);
+        newFreq.addElement(next);
+        body.add(newFreq);
     }
 
     public void add(int current, int next) {
+        add(Integer.toString(current), Integer.toString(next));
     }
 
 }
