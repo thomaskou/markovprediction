@@ -86,6 +86,7 @@ public class Analysis {
 
     private Scanner in;
     private FileWriter out;
+    private String filename;
     private List<String> head = new ArrayList<>();
     private List<Frequencies> body = new ArrayList<>();
 
@@ -98,17 +99,20 @@ public class Analysis {
     }
 
     private void init(String filename) {
+        this.filename = "data/" + filename;
         try {
-            in = new Scanner(new File("data/" + filename));
+            in = new Scanner(new File(this.filename));
             head = Arrays.asList(in.next().split(" "));
             in.next();
             while (in.hasNext()) {
                 body.add(new Frequencies(in.next(), true));
             }
+            in.close();
         } catch (Exception e) {
             try {
-                out = new FileWriter("data/" + filename);
-                in = new Scanner(new File("data/" + filename));
+                out = new FileWriter(this.filename);
+                out.close();
+                //in = new Scanner(new File(this.filename));
             } catch (Exception x) {}
         }
     }
@@ -139,7 +143,30 @@ public class Analysis {
         add(Integer.toString(current), Integer.toString(next));
     }
 
-    public void output() {
+    public void saveOutput() {
+        File f = new File(filename);
+        if (f.exists()) { f.delete(); }
+        try {
+            out = new FileWriter(filename);
+            String s = "";
+            for (int k = 0; k < head.size(); k++) {
+                s += head.get(k);
+                if (k != head.size() - 1) { s += " "; }
+            }
+            out.write(s);
+            out.write(System.getProperty("line.separator"));
+            out.write(System.getProperty("line.separator"));
+            for (int k = 0; k < body.size(); k++) {
+                out.write(body.get(k).toString());
+                if (k != body.size() - 1) { out.write(System.getProperty("line.separator")); }
+            }
+            out.close();
+        } catch (Exception e) {
+            System.out.println("Creation of FileWriter failed.");
+        }
+    }
+
+    public void printOutput() {
         String s = "";
         for (int k = 0; k < head.size(); k++) {
             s += head.get(k);

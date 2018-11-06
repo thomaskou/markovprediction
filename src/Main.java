@@ -4,7 +4,8 @@ public class Main {
         Input in = new Input("numbers.txt");
         Analysis a = new Analysis();
         in.analysis(a);
-        a.output();
+        //a.printOutput();
+        a.saveOutput();
     }
 
 }

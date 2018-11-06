@@ -41,6 +41,7 @@ public class Input {
                 a.add(current, next);
             }
         }
+        in.close();
     }
 
 }

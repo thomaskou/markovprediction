@@ -6,12 +6,12 @@ Rudimentary Markov chain predictor written in Java.
 **Current functionality:**
 
 - File input/output.
+- Read and calculate the frequency of both current and succeeding digits.
+- Calculate the probability of completing a number sequence after *n* digits.
+- Store information in a data file.
 
 **To do (short term):**
 
-- Read and calculate the frequency of both current and succeeding digits.  
-- Calculate the probability of completing a number sequence after *n* digits.  
-- Store information in a data file.  
 - Output a sequence of digits based on the data.  
 
 **To do (long term):**
