@@ -72,6 +72,28 @@ class Frequencies {
         }
     }
 
+    int sumFreq() {
+        int sum = 0;
+        for (int k = 0; k < list.size(); k++) {
+            sum += list.get(k).getFreq();
+        }
+        return sum;
+    }
+
+    int ownFreq() {
+        return word.getFreq();
+    }
+
+    String getElementWord(int freq) {
+        for (int k = 0; k < list.size(); k++) {
+            freq -= list.get(k).getFreq();
+            if (freq <= 0) {
+                return list.get(k).getWord();
+            }
+        }
+        return "lb";
+    }
+
     public String toString() {
         String s = word.getWord() + " " + word.getFreq() + " : ";
         for (int k = 0; k < list.size(); k++) {
@@ -117,6 +139,8 @@ public class Analysis {
         }
     }
 
+    //////////////////////////////////////////////////
+
     public void add(String current, String next) {
         for (int k = 0; k < head.size(); k++) {
             if (head.get(k).equals(current)) {
@@ -142,6 +166,34 @@ public class Analysis {
     public void add(int current, int next) {
         add(Integer.toString(current), Integer.toString(next));
     }
+
+    //////////////////////////////////////////////////
+
+    public String getAny() {
+        int sum = 0;
+        for (int k = 0; k < body.size(); k++) {
+            sum += body.get(k).ownFreq();
+        }
+        int random = (int)(Math.random() * sum) + 1;
+        for (int k = 0; k < body.size(); k++) {
+            random -= body.get(k).ownFreq();
+            if (random <= 0) return body.get(k).getWord();
+        }
+        return "lb";
+    }
+
+    public String getNext(String current) {
+        for (int k = 0; k < body.size(); k++) {
+            if (body.get(k).getWord().equals(current)) {
+                int total = body.get(k).sumFreq();
+                int random = (int)(Math.random() * total) + 1;
+                return body.get(k).getElementWord(random);
+            }
+        }
+        return getAny();
+    }
+
+    //////////////////////////////////////////////////
 
     public void saveOutput() {
         File f = new File(filename);
