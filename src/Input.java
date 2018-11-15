@@ -27,7 +27,17 @@ public class Input {
     }
 
     private void analysis_strings(Analysis a) {
-
+        while (in.hasNextLine()) {
+            String[] s = in.nextLine().split(" ");
+            for (int k = 0; k < s.length; k++) {
+                String current = s[k];
+                String next;
+                if (k == s.length - 1) { next = "lb"; }
+                else { next = s[k+1]; }
+                a.add(current, next);
+            }
+        }
+        in.close();
     }
 
     private void analysis_num(Analysis a) {

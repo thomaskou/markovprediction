@@ -49,7 +49,28 @@ public class Output {
         }
     }
 
-    public void write_fixed(int length) {
+    public void write_strings_fixed(int length) {
+        List<String> words = new ArrayList<>();
+        String current = a.getNext("lb");
+        words.add(current);
+        for (int k = 1; k < length; k++) {
+            current = a.getNext(current);
+            words.add(current);
+        }
+        try {
+            out = new FileWriter(filename);
+            for (int k = 0; k < words.size(); k++) {
+                if (words.get(k).equals("lb")) { out.write(System.getProperty("line.separator")); }
+                else { out.write(words.get(k) + " "); }
+            }
+            out.write(System.getProperty("line.separator"));
+            out.close();
+        } catch (Exception e) {
+            System.out.println("Exception when writing output line.");
+        }
+    }
+
+    public void write_digits_fixed(int length) {
         List<String> chars = new ArrayList<>();
         String current = a.getNext("lb");
         chars.add(current);

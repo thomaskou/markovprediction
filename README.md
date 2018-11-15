@@ -5,17 +5,16 @@ Rudimentary Markov chain predictor written in Java.
 
 **Current functionality:**
 
-- File input/output.
-- Read and calculate the frequency of both current and succeeding digits.
-- Store information in a data file.  
-- Output a sequence of digits based on the data.  
+- Fully implemented Markov chain prediction for numerical digits.
+- Rudimentary implementation of Markov chain prediction based solely on raw word input (ignoring capitalization, punctuation, etc).
+- Read from a file input, calculate the frequency of both current and succeeding items, and store information in a data file.
+- Output a sequence of words or digits based on the data.
 
 **To do (short term):**
-- Calculate the probability of completing a number sequence after *n* digits.
-- Randomly terminate a number sequence based on probability.
+- Calculate the probability of completing a sequence after *n* words/digits.
+- Randomly terminate a sequence based on probability.
 
 **To do (long term):**
 
-- Implement a chain prediction based solely on raw word input (no punctuation, grammar, syntax).  
 - Refine word prediction to include multiple sentences (capitalization, punctuation).  
 - Implement basic grammatical syntax and punctuation.  
